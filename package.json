@@ -1,0 +1,30 @@
+{
+  "name": "full-stack-exercise",
+  "version": "1.0.0",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "test": "npm test -ws --if-present",
+    "build": "npm run build -ws --if-present",
+    "clean": "npm run clean -ws"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k1mtap/full-stack-exercise.git"
+  },
+  "author": "Kimmo Tapaninen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k1mtap/full-stack-exercise/issues"
+  },
+  "homepage": "https://github.com/k1mtap/full-stack-exercise#readme",
+  "devDependencies": {
+    "@tsconfig/node18": "^1.0.1",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  }
+}

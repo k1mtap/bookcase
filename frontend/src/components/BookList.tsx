@@ -4,14 +4,20 @@ import { BookTableRow } from "./BookTableRow";
 import { Container, Header } from "./Common";
 
 const Table = styled.table`
-  width: 100%;
+  width: 580px;
+  border-collapse: collapse;
+`;
+
+const Th = styled.th<{ width: number }>`
+  width: ${({ width }) => `${width}%`};
 `;
 
 interface Props {
   books: Book[];
+  onClick: (book: Book) => void;
 }
 
-export const BookList: React.FC<Props> = ({ books }) => {
+export const BookList: React.FC<Props> = ({ books, onClick }) => {
   return (
     <Container>
       <Header size={2} data-testid="booklist-header">
@@ -23,7 +29,7 @@ export const BookList: React.FC<Props> = ({ books }) => {
         </thead>
         <tbody>
           {books.map((book) => (
-            <BookTableRow key={book.id} book={book} />
+            <BookTableRow key={book.id} book={book} onClick={onClick} />
           ))}
         </tbody>
       </Table>
@@ -34,16 +40,16 @@ export const BookList: React.FC<Props> = ({ books }) => {
 const BookTableHeaders: React.FC = () => {
   return (
     <tr>
-      <th>
+      <Th width={65}>
         <Header size={1} align="left">
           Title
         </Header>
-      </th>
-      <th>
+      </Th>
+      <Th width={35}>
         <Header size={1} align="left">
           Author
         </Header>
-      </th>
+      </Th>
     </tr>
   );
 };

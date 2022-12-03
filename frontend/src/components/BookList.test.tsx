@@ -5,7 +5,7 @@ import { BookList } from "./BookList";
 describe("BookList", () => {
   it("should show a title", () => {
     const expectedTitle = "List";
-    render(<BookList books={books} />);
+    render(<BookList books={books} onClick={() => {}} />);
     const element = screen.getByTestId("booklist-header");
 
     expect(element).toHaveTextContent(expectedTitle);
@@ -13,7 +13,7 @@ describe("BookList", () => {
 
   it("should render a list of the given books", () => {
     const expectedBooksLength = books.length;
-    render(<BookList books={books} />);
+    render(<BookList books={books} onClick={() => {}} />);
     const bookRowElements = screen.getAllByTestId("book-table-row");
 
     expect(bookRowElements).toHaveLength(expectedBooksLength);

@@ -8,6 +8,9 @@ const Global = createGlobalStyle`
   body {
     background: #585c57;
     height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #1d1f1e;
   }
 `;
 

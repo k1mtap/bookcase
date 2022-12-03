@@ -1,4 +1,5 @@
 import { Book } from "@bookcase/book";
+import { useState } from "react";
 import styled from "styled-components";
 import { BookForm } from "./BookForm";
 import { BookList } from "./BookList";
@@ -14,10 +15,12 @@ interface Props {
 }
 
 export const BooksLayout: React.FC<Props> = ({ books }) => {
+  const [book, setBook] = useState<Book | null>(null);
+
   return (
     <Container>
-      <BookList books={books} />
-      <BookForm />
+      <BookList books={books} onClick={(book: Book) => setBook(book)} />
+      <BookForm book={book} />
     </Container>
   );
 };

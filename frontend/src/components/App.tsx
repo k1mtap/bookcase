@@ -6,8 +6,7 @@ import { BooksController } from "../controllers/BooksController";
 import { IManageBooks } from "../services/IManageBooks";
 
 const MainContainer = styled.div`
-  width: 1000px;
-  color: #1d1f1e;
+  width: 1200px;
   margin: auto;
   padding: 10px;
   display: flex;

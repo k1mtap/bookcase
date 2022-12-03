@@ -1,9 +1,10 @@
 {
-  "name": "full-stack-exercise",
+  "name": "bookcase",
   "version": "1.0.0",
   "workspaces": [
     "backend",
-    "frontend"
+    "frontend",
+    "core/book"
   ],
   "scripts": {
     "test": "npm test -ws --if-present",

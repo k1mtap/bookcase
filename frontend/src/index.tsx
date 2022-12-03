@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createGlobalStyle } from "styled-components";
-import { App } from "./App";
+import { App } from "./components/App";
+import { BookService } from "./services/bookService";
 
 const Global = createGlobalStyle`
   body {
-    background: #363c45;
+    background: #585c57;
     height: 100%;
   }
 `;
@@ -13,10 +14,11 @@ const Global = createGlobalStyle`
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+const bookService = new BookService();
 
 root.render(
   <React.StrictMode>
     <Global />
-    <App />
+    <App bookService={bookService} />
   </React.StrictMode>
 );

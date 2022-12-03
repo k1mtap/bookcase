@@ -3,5 +3,7 @@
     "experimental-specifier-resolution=node",
     "loader=ts-node/esm"
   ],
-  "require": ["src/mochaFixtures.ts"]
+  "require": [
+    "mochaFixtures.ts"
+  ]
 }

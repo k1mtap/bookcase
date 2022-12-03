@@ -30,3 +30,9 @@ npm test
 ```bash
 npm run build
 ```
+
+## Running commands for individual packages
+
+```bash
+npm run <command> -w=@bookcase/<package-name>
+```

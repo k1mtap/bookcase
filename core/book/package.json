@@ -1,6 +1,7 @@
 {
-  "name": "@bookcase/backend",
+  "name": "@bookcase/book",
   "version": "1.0.0",
+  "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -22,9 +23,5 @@
     "url": "https://github.com/k1mtap/full-stack-exercise/issues"
   },
   "homepage": "https://github.com/k1mtap/full-stack-exercise#readme",
-  "dependencies": {},
-  "devDependencies": {
-    "@types/mocha": "^10.0.1",
-    "mocha": "^10.1.0"
-  }
+  "devDependencies": {}
 }

@@ -1,4 +1,35 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+export const colors = {
+  fontColor: "#1d1f1e",
+  bgBody: "#6b6c6a",
+  bgMain: "#396380",
+  bgForm: "#5e7483",
+  bgFormFocus: "#889aa7",
+  borderMain: "#404040",
+  border: "#afb9ac",
+  borderForm: "#6a6d6a",
+  divider: "#929292",
+};
+
+const InputFocus = css`
+  &:focus {
+    outline: none;
+    border: 1px solid ${colors.border};
+    background: ${colors.bgFormFocus};
+  }
+`;
+const CommonFormStyles = css`
+  font-size: inherit;
+  color: inherit;
+  border: 1px solid ${colors.borderForm};
+  background: ${colors.bgForm};
+`;
+
+export const SharedFormStyles = css`
+  ${CommonFormStyles}
+  ${InputFocus}
+`;
 
 export const Container = styled.div<{
   direction?: "row" | "col";
@@ -24,22 +55,19 @@ export const Header = styled.h1<{
 
 export const Divider = styled.hr`
   width: 100%;
-  border: 0.5px solid #6a6d6a;
+  border: 0.5px solid ${colors.divider};
 `;
 
 export const Button = styled.button`
-  font-size: inherit;
-  color: inherit;
+  ${CommonFormStyles}
   width: 100px;
   height: 30px;
-  border: 1px solid #6a6d6a;
-  background: #5e7483;
   &:hover {
-    border-color: #afb9ac;
+    border-color: ${colors.border};
     cursor: pointer;
   }
   &:active {
-    background: #889aa7;
+    background: ${colors.bgFormFocus};
   }
 `;
 

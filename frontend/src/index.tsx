@@ -2,15 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createGlobalStyle } from "styled-components";
 import { App } from "./components/App";
+import { colors } from "./components/Common";
 import { BookService } from "./services/bookService";
 
 const Global = createGlobalStyle`
   body {
-    background: #585c57;
+    background: ${colors.bgBody};
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    color: #1d1f1e;
+    color: ${colors.fontColor};
   }
 `;
 

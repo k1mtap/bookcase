@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Divider, Header } from "./Common";
+import { colors, Divider, Header } from "./Common";
 import { BooksLayout } from "./BooksLayout";
 import { BooksController } from "../controllers/BooksController";
 import { IManageBooks } from "../services/IManageBooks";
@@ -12,8 +12,8 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #465c6b;
-  border: 1px solid #404040;
+  background: ${colors.bgMain};
+  border: 1px solid ${colors.borderMain};
   border-radius: 5px;
 `;
 

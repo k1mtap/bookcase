@@ -3,12 +3,32 @@ import { render, screen } from "@testing-library/react";
 import { BookList } from "./BookList";
 
 describe("BookList", () => {
-  it("should show a title", () => {
+  it("should show a title 'List'", () => {
     const expectedTitle = "List";
     render(<BookList books={books} onClick={() => {}} />);
-    const element = screen.getByTestId("booklist-header");
+    const titleElement = screen.getByTestId("booklist-header");
 
-    expect(element).toHaveTextContent(expectedTitle);
+    expect(titleElement).toHaveTextContent(expectedTitle);
+  });
+
+  it("should show the column title 'Title'", () => {
+    const expectedColumnTitle = "Title";
+    render(<BookList books={books} onClick={() => {}} />);
+    const columnHeaderElement = screen.getByTestId(
+      "booklist-column-header-title"
+    );
+
+    expect(columnHeaderElement).toHaveTextContent(expectedColumnTitle);
+  });
+
+  it("should show the column title 'Author'", () => {
+    const expectedColumnTitle = "Author";
+    render(<BookList books={books} onClick={() => {}} />);
+    const columnHeaderElement = screen.getByTestId(
+      "booklist-column-header-author"
+    );
+
+    expect(columnHeaderElement).toHaveTextContent(expectedColumnTitle);
   });
 
   it("should render a list of the given books", () => {

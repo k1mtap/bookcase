@@ -1,10 +1,25 @@
 import { Book } from "@bookcase/book";
-import { IManageBooks } from "./IManageBooks";
+import { CreateBookInput, IManageBooks } from "./IManageBooks";
+import { v4 as uuidV4 } from "uuid";
 
 export class BookService implements IManageBooks {
-  getAll(): Book[] {
+  async getAll(): Promise<Book[]> {
     return books;
   }
+
+  async create(input: CreateBookInput): Promise<Book> {
+    const id = uuidV4();
+    const book = {
+      ...input,
+      id,
+    };
+
+    return book;
+  }
+
+  async update(_book: Book): Promise<void> {}
+
+  async delete(_book: Book): Promise<void> {}
 }
 
 const books: Book[] = [

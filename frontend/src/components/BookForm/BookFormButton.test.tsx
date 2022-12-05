@@ -5,7 +5,7 @@ describe("BookFormButton", () => {
   it("should show a button with the given title", () => {
     const expectedTitle = "foo";
 
-    render(<BookFormButton title={expectedTitle} onClick={() => {}} />);
+    render(<BookFormButton title={expectedTitle} handleOnClick={() => {}} />);
     const element = screen.getByTestId("form-button-foo");
 
     expect(element).toHaveTextContent(expectedTitle);
@@ -14,7 +14,7 @@ describe("BookFormButton", () => {
   it("should call the given callback on button click", () => {
     const callback = jest.fn();
 
-    render(<BookFormButton title={"foo"} onClick={callback} />);
+    render(<BookFormButton title={"foo"} handleOnClick={callback} />);
     const element = screen.getByTestId("form-button-foo");
 
     fireEvent.click(element);

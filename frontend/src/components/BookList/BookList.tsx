@@ -1,7 +1,7 @@
 import { Book } from "@bookcase/book";
 import styled from "styled-components";
+import { Container, Header } from "../Common";
 import { BookTableRow } from "./BookTableRow";
-import { Container, Header } from "./Common";
 
 const Table = styled.table`
   width: 580px;
@@ -15,9 +15,10 @@ const Th = styled.th<{ width: number }>`
 interface Props {
   books: Book[];
   onClick: (book: Book) => void;
+  activeBookId?: string;
 }
 
-export const BookList: React.FC<Props> = ({ books, onClick }) => {
+export const BookList: React.FC<Props> = ({ books, onClick, activeBookId }) => {
   return (
     <Container>
       <Header size={2} data-testid="booklist-header">
@@ -29,7 +30,12 @@ export const BookList: React.FC<Props> = ({ books, onClick }) => {
         </thead>
         <tbody>
           {books.map((book) => (
-            <BookTableRow key={book.id} book={book} onClick={onClick} />
+            <BookTableRow
+              key={book.id}
+              book={book}
+              onClick={onClick}
+              active={book.id === activeBookId}
+            />
           ))}
         </tbody>
       </Table>
@@ -41,12 +47,20 @@ const BookTableHeaders: React.FC = () => {
   return (
     <tr>
       <Th width={65}>
-        <Header size={1} align="left">
+        <Header
+          size={1}
+          align="left"
+          data-testid="booklist-column-header-title"
+        >
           Title
         </Header>
       </Th>
       <Th width={35}>
-        <Header size={1} align="left">
+        <Header
+          size={1}
+          align="left"
+          data-testid="booklist-column-header-author"
+        >
           Author
         </Header>
       </Th>

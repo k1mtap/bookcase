@@ -10,8 +10,7 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./dist",
-    "compile": "tsc --build",
-    "test": "mocha 'src/**/*.test.ts'"
+    "compile": "tsc --build"
   },
   "repository": {
     "type": "git",

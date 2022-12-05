@@ -29,7 +29,14 @@ export const App: React.FC<Props> = ({ bookService }) => {
       </Header>
       <Divider />
       <BooksController bookService={bookService}>
-        {(books) => <BooksLayout books={books} />}
+        {({ books, createBook, updateBook, deleteBook }) => (
+          <BooksLayout
+            books={books}
+            createBook={createBook}
+            updateBook={updateBook}
+            deleteBook={deleteBook}
+          />
+        )}
       </BooksController>
     </MainContainer>
   );

@@ -20,6 +20,10 @@ const InputFocus = css`
   }
 `;
 const CommonFormStyles = css`
+  display: block;
+  width: 100%;
+  margin-right: 0;
+  padding: 0;
   font-size: inherit;
   color: inherit;
   border: 1px solid ${colors.borderForm};
@@ -34,7 +38,10 @@ export const SharedFormStyles = css`
 export const Container = styled.div<{
   direction?: "row" | "col";
   justifyContent?: "space-between";
+  marginBottom?: number;
 }>`
+  margin-bottom: ${({ marginBottom }) =>
+    marginBottom ? `${marginBottom}px` : "none"};
   width: 100%;
   display: flex;
   flex-direction: ${({ direction }) => (direction ? direction : "column")};

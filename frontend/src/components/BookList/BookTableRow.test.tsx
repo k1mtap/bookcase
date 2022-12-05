@@ -23,15 +23,14 @@ describe("BookTableRow", () => {
     expect(element).toHaveTextContent(expectedAuthor);
   });
 
-  it("should call the given callback with the book", () => {
+  it("should call the given callback with the book when clicked", () => {
     const callback = jest.fn();
-    const title = "foo";
-    const expectedBook = createBook({ title });
+    const expectedBook = createBook();
 
     renderBookTableRow(expectedBook, callback);
-    const bookTitleElement = screen.getByText(title);
+    const rowElement = screen.getByTestId("book-table-row");
 
-    fireEvent.click(bookTitleElement);
+    fireEvent.click(rowElement);
 
     expect(callback).toBeCalledWith(expectedBook);
   });

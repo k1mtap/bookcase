@@ -14,13 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/k1mtap/full-stack-exercise.git"
+    "url": "git+https://github.com/k1mtap/bookcase.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/k1mtap/full-stack-exercise/issues"
+    "url": "https://github.com/k1mtap/bookcase/issues"
   },
-  "homepage": "https://github.com/k1mtap/full-stack-exercise#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/k1mtap/bookcase#readme"
 }

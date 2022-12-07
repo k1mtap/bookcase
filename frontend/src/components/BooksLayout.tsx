@@ -35,7 +35,7 @@ export const BooksLayout: React.FC<ChildProps> = ({
       <BookList
         books={books}
         onClick={(book: Book) => setBook(book)}
-        activeBookId={book ? book.id : undefined}
+        activeBookId={book ? book.bookId : undefined}
       />
       <BookForm
         book={book}

@@ -37,7 +37,7 @@ export class WebServer {
         if (error) {
           console.error(error);
         }
-        console.log(`Bookcase server ready at ${this.port}`);
+        console.log(`Bookcase ready at http://localhost:${this.port}`);
         resolve();
       });
     });
@@ -45,6 +45,7 @@ export class WebServer {
 
   private prepare(): void {
     this.app.use(cors());
+    this.app.use(express.static("build"));
     this.app.use(express.json());
     for (const route of this.routes) {
       this.app.use(`/api${route.path}`, route.router);

@@ -42,19 +42,19 @@ describe("BookList", () => {
 
 const books: Book[] = [
   {
-    id: "1",
+    bookId: "1",
     title: "title1",
     author: "author1",
     description: "description1",
   },
   {
-    id: "2",
+    bookId: "2",
     title: "title2",
     author: "author2",
     description: "description2",
   },
   {
-    id: "3",
+    bookId: "3",
     title: "title3",
     author: "author3",
     description: "description3",

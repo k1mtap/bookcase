@@ -282,60 +282,6 @@ describe("BookForm", () => {
       expect(mockDeleteBook).not.toBeCalled();
     });
 
-    it("should not delete a book if title has been modified", () => {
-      const mockDeleteBook = jest.fn();
-      const book = createBook({
-        title: "book title",
-        author: "book author",
-        description: "book description",
-      });
-      renderBookForm({ deleteBook: mockDeleteBook, book });
-
-      const titleInput = screen.getByLabelText("Title");
-      const deleteButton = screen.getByTestId("form-button-delete");
-
-      fireEvent.change(titleInput, { target: { value: "foo" } });
-      fireEvent.click(deleteButton);
-
-      expect(mockDeleteBook).not.toBeCalled();
-    });
-
-    it("should not delete a book if author has been modified", () => {
-      const mockDeleteBook = jest.fn();
-      const book = createBook({
-        title: "book title",
-        author: "book author",
-        description: "book description",
-      });
-      renderBookForm({ deleteBook: mockDeleteBook, book });
-
-      const authorInput = screen.getByLabelText("Author");
-      const deleteButton = screen.getByTestId("form-button-delete");
-
-      fireEvent.change(authorInput, { target: { value: "foo" } });
-      fireEvent.click(deleteButton);
-
-      expect(mockDeleteBook).not.toBeCalled();
-    });
-
-    it("should not delete a book if description has been modified", () => {
-      const mockDeleteBook = jest.fn();
-      const book = createBook({
-        title: "book title",
-        author: "book author",
-        description: "book description",
-      });
-      renderBookForm({ deleteBook: mockDeleteBook, book });
-
-      const descriptionInput = screen.getByLabelText("Description");
-      const deleteButton = screen.getByTestId("form-button-delete");
-
-      fireEvent.change(descriptionInput, { target: { value: "foo" } });
-      fireEvent.click(deleteButton);
-
-      expect(mockDeleteBook).not.toBeCalled();
-    });
-
     it("should delete the given book", async () => {
       const mockDeleteBook = jest.fn();
       const bookToBeDeleted = createBook({
@@ -406,7 +352,7 @@ interface Options {
 }
 
 const createBook = (options: Options = {}): Book => ({
-  id: "1",
+  bookId: "1",
   title: options.title ?? "",
   author: options.author ?? "",
   description: options.description ?? "",

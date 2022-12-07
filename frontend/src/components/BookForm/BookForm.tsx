@@ -27,7 +27,7 @@ export const BookForm: React.FC<Props> = ({
 }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState<string | undefined>("");
 
   useEffect(() => {
     if (book) {
@@ -59,7 +59,7 @@ export const BookForm: React.FC<Props> = ({
     }
 
     const updatedBook: Book = {
-      id: book.id,
+      bookId: book.bookId,
       title,
       author,
       description,
@@ -69,7 +69,7 @@ export const BookForm: React.FC<Props> = ({
   };
 
   const handleDeleteBook = async () => {
-    if (book === null || bookHasBeenModified) {
+    if (book === null) {
       return;
     }
 
@@ -103,7 +103,7 @@ export const BookForm: React.FC<Props> = ({
           onChange={(author: string) => setAuthor(author)}
         />
         <BookTextArea
-          value={description}
+          value={description ? description : ""}
           onChange={(description: string) => setDescription(description)}
         />
         <Container direction="row" justifyContent="space-between">

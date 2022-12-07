@@ -1,22 +1,17 @@
-# full-stack-exercise
+# bookcase
 
 A Simple single-page web application which manages a collection of books. A User is able to add, modify and delete books.
 
-## Installation
+## Usage
 
 1. Clone repo
    ```bash
-   git clone https://github.com/k1mtap/full-stack-exercise.git
+   git clone https://github.com/k1mtap/bookcase.git
    ```
-2. Use the desired node version
+2. Start the Bookcase (uses Docker)
 
    ```bash
-   nvm use
-   ```
-
-3. Install dependencies
-   ```bash
-   npm ci
+   npm run startBookcase
    ```
 
 ## Unit tests
@@ -31,8 +26,16 @@ npm test
 npm run build
 ```
 
-## Running commands for individual packages
+## NPM Workspace helpers
+
+Running a command for one package only
 
 ```bash
 npm run <command> -w=@bookcase/<package-name>
+```
+
+Installing packageA as a dependency for packageB
+
+```bash
+npm install @bookcase/packageA -w=@bookcase/packageB
 ```

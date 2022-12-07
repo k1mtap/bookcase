@@ -52,7 +52,7 @@ interface BookOptions {
 }
 
 const createBook = (options: BookOptions = {}): Book => ({
-  id: "1",
+  bookId: "1",
   title: options.title ?? "title",
   author: options.author ?? "author",
   description: "description",

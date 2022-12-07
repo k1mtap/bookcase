@@ -142,26 +142,19 @@ describe("BookHttpApi", () => {
   describe("delete: /books/bookId", () => {
     it("should delete the given book", async () => {
       const { server, mockBookRepository } = setupTestEnvironment();
-      const id = "bookId";
-      const expectedBook = createBook({ id });
+      const expectedId = "bookId";
 
       expect(mockBookRepository.delete).not.to.be.called;
 
-      await request(server)
-        .delete(`/api/books/${id}`)
-        .send(expectedBook)
-        .expect(200);
+      await request(server).delete(`/api/books/${expectedId}`).expect(200);
 
-      expect(mockBookRepository.delete).to.be.calledWith(expectedBook);
+      expect(mockBookRepository.delete).to.be.calledWith(expectedId);
     });
 
     it("should response with an error message when deleting a book fails", async () => {
       const { server, mockBookRepository } = setupTestEnvironment();
       (mockBookRepository.delete as sinon.SinonStub).throws();
-      const response = await request(server)
-        .delete("/api/books/1")
-        .send({ data: "irrelevant" })
-        .expect(400);
+      const response = await request(server).delete("/api/books/1").expect(400);
 
       expect(response.body).to.deep.equal(commonErrorMessage);
     });
@@ -210,7 +203,7 @@ interface BookOptions {
 }
 
 const createBook = (options: BookOptions = {}): Book => ({
-  id: options.id ?? "1",
+  bookId: options.id ?? "1",
   title: options.title ?? "title",
   author: options.author ?? "author",
   description: options.description ?? "description",

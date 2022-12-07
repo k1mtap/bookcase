@@ -2,15 +2,17 @@
   "name": "bookcase",
   "version": "1.0.0",
   "workspaces": [
-    "backend",
-    "frontend",
     "core/book",
-    "core/util"
+    "core/util",
+    "backend",
+    "frontend"
   ],
   "scripts": {
     "test": "npm test -ws --if-present",
     "build": "npm run build -ws --if-present",
-    "clean": "npm run clean -ws"
+    "clean": "npm run clean -ws",
+    "start": "npm start -w=@bookcase/backend",
+    "startBookcase": "docker-compose up"
   },
   "repository": {
     "type": "git",
@@ -22,11 +24,6 @@
     "url": "https://github.com/k1mtap/bookcase/issues"
   },
   "homepage": "https://github.com/k1mtap/bookcase#readme",
-  "dependencies": {
-    "lodash": "^4.17.21",
-    "ts-node": "^10.9.1",
-    "uuid": "^9.0.0"
-  },
   "devDependencies": {
     "@tsconfig/node18": "^1.0.1",
     "@types/chai": "^4.3.4",

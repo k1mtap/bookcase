@@ -1,9 +1,9 @@
 {
   "extends": "./tsconfig.build.json",
   "references": [
-    { "path": "backend" },
-    { "path": "frontend" },
     { "path": "core/book" },
-    { "path": "core/util" }
+    { "path": "core/util" },
+    { "path": "backend" },
+    { "path": "frontend" }
   ]
 }

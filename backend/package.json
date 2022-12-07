@@ -24,14 +24,22 @@
   },
   "homepage": "https://github.com/k1mtap/bookcase#readme",
   "dependencies": {
+    "@bookcase/book": "^1.0.0",
+    "@bookcase/util": "^1.0.0",
+    "@tsconfig/node18": "^1.0.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "express-async-errors": "^3.1.1"
+    "express-async-errors": "^3.1.1",
+    "knex": "^2.3.0",
+    "pg": "^8.8.0",
+    "ts-node": "^10.9.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.14",
     "@types/supertest": "^2.0.12",
+    "@types/uuid": "^9.0.0",
     "supertest": "^6.3.2"
   }
 }

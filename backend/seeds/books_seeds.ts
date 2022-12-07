@@ -1,46 +1,12 @@
-import { Book } from "@bookcase/book";
-import { Repository } from "./Repository";
+import { Knex } from "knex";
 import { v4 as uuidV4 } from "uuid";
+import { Book } from "@bookcase/book";
 
-export class BookRepository implements Repository<Book> {
-  private books: Book[];
+export async function seed(knex: Knex): Promise<void> {
+  const databaseIsEmpty = (await knex("books").count("id")).length === 0;
 
-  constructor() {
-    this.books = books;
-  }
-
-  async getAll(): Promise<Book[]> {
-    return this.books;
-  }
-
-  async create(input: Omit<Book, "bookId">): Promise<Book> {
-    const newBook: Book = {
-      bookId: uuidV4(),
-      ...input,
-    };
-    this.books = this.books.concat(newBook);
-
-    return newBook;
-  }
-
-  async update(entity: Book): Promise<void> {
-    this.books = this.books.map((b) => {
-      if (b.bookId === entity.bookId) {
-        return entity;
-      }
-
-      return b;
-    });
-  }
-
-  async delete(entityId: string): Promise<void> {
-    const book = this.books.find((b) => b.bookId === entityId);
-    if (book === undefined) {
-      throw new Error("BookRepository.delete: given book not found");
-    }
-
-    const index = this.books.indexOf(book);
-    this.books.splice(index, 1);
+  if (databaseIsEmpty) {
+    await knex("books").insert(books);
   }
 }
 

@@ -1,10 +1,28 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "files": [],
   "compilerOptions": {
-    "rootDir": "src",
+    "lib": [
+      "es2020",
+      "es2020.promise",
+      "es2020.bigint",
+      "es2020.string",
+      "dom"
+    ],
+    "incremental": true,
+    "declaration": true,
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "declarationMap": true,
     "composite": true,
     "outDir": "./dist",
     "tsBuildInfoFile": "./dist/.tsBuildInfoFile"
   },
-  "include": ["src"]
+  "include": ["src", "knexfile.ts"],
+  "exclude": ["node_modules", "dist"]
 }

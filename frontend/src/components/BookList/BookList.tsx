@@ -31,10 +31,10 @@ export const BookList: React.FC<Props> = ({ books, onClick, activeBookId }) => {
         <tbody>
           {books.map((book) => (
             <BookTableRow
-              key={book.id}
+              key={book.bookId}
               book={book}
               onClick={onClick}
-              active={book.id === activeBookId}
+              active={book.bookId === activeBookId}
             />
           ))}
         </tbody>

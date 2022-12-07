@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: "test"
+      POSTGRES_DB: "books"
+      POSTGRES_USER: "test"
+      TZ: Europe/Helsinki
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    ports:
+      - "3030:8080"
+  bookcase:
+    build: .
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://test:test@host.docker.internal:5432/books
+      PORT: 3001
+    ports:
+      - "3001:3001"
+      - "3000:3000"
+    logging:
+      options:
+        max-size: "500M"
+    restart: unless-stopped
+    volumes:
+      - ./src:/src

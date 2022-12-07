@@ -55,9 +55,9 @@ export class BookHttpApi implements HttpApi {
     this.router.delete(
       "/:id",
       async (req: TypedRequest<Book>, res: Response) => {
-        const bookToBeDeleted = req.body;
+        const bookIdToBeDeleted = req.params.id;
 
-        await this.bookRepository.delete(bookToBeDeleted);
+        await this.bookRepository.delete(bookIdToBeDeleted);
 
         res.status(200).end();
       }

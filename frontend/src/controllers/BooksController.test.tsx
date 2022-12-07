@@ -213,7 +213,7 @@ describe("BooksController", () => {
       expect(mockBookService.update).not.toBeCalled();
     });
 
-    it("should not update a book if an existing book with same title and author is found", async () => {
+    it("should not update a book if another book with same title and author exists", async () => {
       const books = createMockBooks();
       const updatedBook: Book = {
         bookId: "3",

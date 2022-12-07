@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from "uuid";
 import { Book } from "@bookcase/book";
 
 export async function seed(knex: Knex): Promise<void> {
-  const databaseIsEmpty = (await knex("books").count("id")).length === 0;
+  const databaseIsEmpty = (await knex("books")).length === 0;
 
   if (databaseIsEmpty) {
     await knex("books").insert(books);

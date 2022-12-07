@@ -11,7 +11,7 @@ const main = async () => {
   const database = new Database(knexFile);
   await database.init();
 
-  const bookRepository = new BookRepository();
+  const bookRepository = new BookRepository(database);
   const bookHttpApi = new BookHttpApi(bookRepository);
   const webServer = new WebServer(port);
   webServer.registerRoute("/books", bookHttpApi.getRouter());

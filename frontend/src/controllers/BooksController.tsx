@@ -26,7 +26,7 @@ export const BooksController = ({
   }, [bookService]);
 
   const createBook = async (input: CreateBookInput): Promise<Book | null> => {
-    if (bookAlreadyExists(input, books)) {
+    if (bookWithSameTitleAndAuthorAlreadyExists(input, books)) {
       return null;
     }
 
@@ -37,14 +37,17 @@ export const BooksController = ({
   };
 
   const updateBook = async (book: Book): Promise<void> => {
-    if (nonExistingBook(book, books)) {
+    if (
+      nonExistingBook(book, books) ||
+      bookWithSameTitleAndAuthorAlreadyExists(book, books)
+    ) {
       return;
     }
 
     await bookService.update(book);
     const booksCopy = [...books];
     const updatedBooks = booksCopy.map((b) => {
-      if (b.id === book.id) {
+      if (b.bookId === book.bookId) {
         return book;
       } else {
         return b;
@@ -60,7 +63,7 @@ export const BooksController = ({
     }
 
     await bookService.delete(book);
-    const filteredBooks = [...books].filter((b) => b.id !== book.id);
+    const filteredBooks = [...books].filter((b) => b.bookId !== book.bookId);
 
     setBooks(filteredBooks);
   };
@@ -68,12 +71,15 @@ export const BooksController = ({
   return <>{children({ books, updateBook, createBook, deleteBook })}</>;
 };
 
-const bookAlreadyExists = (bookInput: CreateBookInput, books: Book[]) => {
+const bookWithSameTitleAndAuthorAlreadyExists = (
+  bookInput: CreateBookInput,
+  books: Book[]
+) => {
   return books.some(
     (b) => b.title === bookInput.title && b.author === bookInput.author
   );
 };
 
 const nonExistingBook = (book: Book, books: Book[]) => {
-  return !books.find((b) => b.id === book.id);
+  return !books.find((b) => b.bookId === book.bookId);
 };

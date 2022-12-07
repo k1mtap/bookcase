@@ -87,7 +87,7 @@ describe("BooksController", () => {
         description: "baz",
       };
       const existingBook: Book = {
-        id: "4",
+        bookId: "4",
         ...createBookObject,
       };
       const books = [...createMockBooks(), existingBook];
@@ -117,9 +117,9 @@ describe("BooksController", () => {
         author: "bar",
         description: "baz",
       };
-      const books = [...createMockBooks()];
+      const books = createMockBooks();
       const newBook: Book = {
-        id: "4",
+        bookId: "4",
         title: "foo",
         author: "bar",
         description: "baz",
@@ -152,9 +152,9 @@ describe("BooksController", () => {
         author: "bar",
         description: "baz",
       };
-      const books = [...createMockBooks()];
+      const books = createMockBooks();
       const newBook: Book = {
-        id: "4",
+        bookId: "4",
         title: "foo",
         author: "bar",
         description: "baz",
@@ -187,11 +187,38 @@ describe("BooksController", () => {
 
   describe("#updateBook", () => {
     it("should not update a book if the book is not found in the existing books", async () => {
-      const books = [...createMockBooks()];
+      const books = createMockBooks();
       const updatedBook: Book = {
-        id: "4",
+        bookId: "4",
         title: "foo",
         author: "bar",
+        description: "baz",
+      };
+      const mockBookService = createMockBookService({
+        books,
+      });
+      const mockChild = jest.fn().mockReturnValue(null);
+
+      render(
+        <BooksController bookService={mockBookService}>
+          {mockChild}
+        </BooksController>
+      );
+
+      await assertStateUpdate(mockChild, { books });
+
+      const { updateBook } = mockChild.mock.calls[1][0];
+      await updateBook(updatedBook);
+
+      expect(mockBookService.update).not.toBeCalled();
+    });
+
+    it("should not update a book if an existing book with same title and author is found", async () => {
+      const books = createMockBooks();
+      const updatedBook: Book = {
+        bookId: "3",
+        title: books[0].title,
+        author: books[0].author,
         description: "baz",
       };
       const mockBookService = createMockBookService({
@@ -216,7 +243,7 @@ describe("BooksController", () => {
     it("should update a book", async () => {
       const books = [...createMockBooks()];
       const updatedBook: Book = {
-        id: "3",
+        bookId: "3",
         title: "foo",
         author: "bar",
         description: "baz",
@@ -245,7 +272,7 @@ describe("BooksController", () => {
     it("should pass the updated books to children", async () => {
       const books = [...createMockBooks()];
       const updatedBook: Book = {
-        id: "3",
+        bookId: "3",
         title: "foo",
         author: "bar",
         description: "baz",
@@ -278,7 +305,7 @@ describe("BooksController", () => {
     it("should not delete a book if the book is not found in the existing books", async () => {
       const books = [...createMockBooks()];
       const bookToBeDeleted: Book = {
-        id: "4",
+        bookId: "4",
         title: "foo",
         author: "bar",
         description: "baz",
@@ -366,9 +393,24 @@ const createMockBookService = (options: Options = {}): IManageBooks => ({
 });
 
 const createMockBooks = (): Book[] => [
-  { id: "1", title: "title1", author: "author1", description: "description1" },
-  { id: "2", title: "title2", author: "author2", description: "description2" },
-  { id: "3", title: "title3", author: "author3", description: "description3" },
+  {
+    bookId: "1",
+    title: "title1",
+    author: "author1",
+    description: "description1",
+  },
+  {
+    bookId: "2",
+    title: "title2",
+    author: "author2",
+    description: "description2",
+  },
+  {
+    bookId: "3",
+    title: "title3",
+    author: "author3",
+    description: "description3",
+  },
 ];
 
 const assertStateUpdate = async (
